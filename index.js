@@ -1,7 +1,6 @@
 var httpClient = require('superagent');
 var Promise = require('bluebird');
 var crypto = require('crypto');
-var querystring = require('querystring');
 
 function Mlepay(opts) {
   if (!opts.receiver_email) {
@@ -36,7 +35,7 @@ Mlepay.prototype = {
         payload: txnOpts.payload,
         description: txnOpts.description,
       };
-      var base = "POST&" + _quoteUrl(_this.apiEndpoint) + "&" + _quoteUrl(querystring.stringify(body));
+      var base = "POST&" + _quoteUrl(_this.apiEndpoint) + "&" + _quoteUrl(JSON.stringify(body));
       var signature = crypto.createHmac('sha256', _this.secret_key).update(base).digest('base64');
       httpClient.post(_this.apiEndpoint)
         .set('User-Agent', "mlepay node.js client 0.1.0")
