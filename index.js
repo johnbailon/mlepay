@@ -28,7 +28,7 @@ Mlepay.prototype = {
         sender_phone: txnOpts.sender_phone,
         sender_address: txnOpts.sender_address,
         amount: txnOpts.amount,
-        currency: txnOpts.currency === null ? "PHP": txnOpts.currency,
+        currency: !txnOpts.currency ? "PHP": txnOpts.currency,
         timestamp: Math.floor(new Date() / 1000),
         nonce: crypto.randomBytes(8).toString('hex'),
         expiry: txnOpts.expiry,
@@ -52,17 +52,17 @@ Mlepay.prototype = {
 }
 
 function _quoteUrl(url) {
-    var safe = '/';
-    var toUnencode = [];
-    url = encodeURIComponent(url);
-    for (var i = safe.length - 1; i >= 0; --i) {
-        var encoded = encodeURIComponent(safe[i]);
-        if (encoded !== safe.charAt(i)) {
-            toUnencode.push(encoded);
-        }
+  var safe = '/';
+  var toUnencode = [];
+  url = encodeURIComponent(url);
+  for (var i = safe.length - 1; i >= 0; --i) {
+    var encoded = encodeURIComponent(safe[i]);
+    if (encoded !== safe.charAt(i)) {
+      toUnencode.push(encoded);
     }
-    url = url.replace(new RegExp(toUnencode.join('|'), 'ig'), decodeURIComponent);
-    return url;
+  }
+  url = url.replace(new RegExp(toUnencode.join('|'), 'ig'), decodeURIComponent);
+  return url;
 }
 
 module.exports = Mlepay;
