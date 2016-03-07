@@ -1,0 +1,25 @@
+{
+  "name": "mlepay",
+  "version": "0.1.0",
+  "description": "Node.js client for ML ePay (https://mlepay.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mlepay",
+    "payment",
+    "processor",
+    "philippines",
+    "m",
+    "lhuillier",
+    "pawnshop"
+  ],
+  "author": "John Bailon <john@sci.ph> (http://johnbailon.com)",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.3.3",
+    "querystring": "^0.2.0",
+    "superagent": "^1.8.0-beta.2"
+  }
+}
